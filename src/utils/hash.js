@@ -7,5 +7,5 @@ const createHash = (password) => {
 const isValidPassword = (password, passwordHashed) => {
   return bcrypt.compareSync(password, passwordHashed);
 };
-
+//rererer
 module.exports = { createHash, isValidPassword };
