@@ -1,14 +1,14 @@
 const { Router } = require("express");
-const userModel = require("../../models/usersModel.js");
+const UserController = require("../../controllers/users.controller.js");
 
 const router = Router();
+const { getUsers, getUser, createUser, updateUser, deleteUser } =
+  new UserController();
 
-router.get('/',  async (req, res)=>{
-    try {
-        const users = await userModel.find()
-        res.send({status: 'success', data: users})
-        
-    } catch (error) {
-        console.log(error)
-    }
-})
+router.get("/", getUsers);
+router.post("/", createUser);
+router.get("/:uid", getUser);
+router.put("/:uid", updateUser);
+router.delete("/:uid", deleteUser);
+
+module.exports = router;

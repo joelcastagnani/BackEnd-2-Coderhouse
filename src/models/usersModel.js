@@ -9,19 +9,16 @@ const userSchema = new Schema({
     type: String,
     unique: true,
   },
-  age: Number,
-  password: {
-    type: String,
-    required: true,
-  },
-  cart: {
-    type: String,
-    default: "hola",
+  carID: {
+    type: Schema.Types.ObjectId,
+    ref: "carts",
   },
   role: {
     type: String,
     default: "user",
   },
+  password: { type: String, required: true },
+  active: { type: Boolean, dafault: true },
 });
 
 const userModel = model(userCollection, userSchema);
