@@ -5,6 +5,7 @@ const handlebars = require("express-handlebars");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const cors = require('cors');
 
 const UserRouter = require('./routes/api/userRouter.js')
 const viewsRouter = require("./routes/viewsRouter.js");
@@ -16,11 +17,19 @@ require("./config/passportConfig.js");
 const app = express();
 const PORT = objectConfig.port;
 
+app.get("/api/users", (req, res) => {
+  res.json([
+    { id: 1, name: "John Doe" },
+    { id: 2, name: "Jane Smith" },
+  ]);
+});
+
 connectDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());
+app.use(cors());
 
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");

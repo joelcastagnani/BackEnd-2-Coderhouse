@@ -4,7 +4,8 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const dotenv = require("dotenv");
-const { program } = require('../utils/commander.js')
+const { program } = require('../utils/commander.js');
+const { MongoSingleton } = require("./singleton.js");
 
 const { mode } = program.opts();
 
@@ -26,8 +27,10 @@ const uri = process.env.MONGO_DB;
 console.log(uri);
 
 const connectDb = async () => {
-  console.log("base de datos conectada");
-  await connect(uri);
+  // console.log("base de datos conectada");
+  // await connect(uri);
+
+  await MongoSingleton.getInstance();
 };
 
 module.exports = {
