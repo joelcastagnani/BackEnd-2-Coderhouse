@@ -1,4 +1,4 @@
-const UserDaoMongo = require("../daos/userDao.mongo.js");
+const UserDaoMongo = require("../daos/MONGO/userDao.mongo.js");
 
 const userService = new UserDaoMongo();
 

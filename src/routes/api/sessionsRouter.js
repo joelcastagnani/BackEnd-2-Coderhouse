@@ -3,7 +3,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-const { userModel } = require("../../models/usersModel.js");
+const { userModel } = require("../../daos/models/usersModel.js")
 const { createHash } = require("../../utils/hash.js");
 const { passportCall, authorization } = require("../../utils/passportCall.js");
 

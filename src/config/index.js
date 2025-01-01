@@ -4,10 +4,11 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const dotenv = require("dotenv");
-const { program } = require('../utils/commander.js');
+const { program } = require("../utils/commander.js");
 const { MongoSingleton } = require("./singleton.js");
-
-const { mode } = program.opts();
+const { Command } = require("commander");
+const { mode, persistence } = program.opts();
+console.log(mode, persistence);
 
 dotenv.config({
   path: mode === "development" ? "./.env.development" : "./.env.production",
@@ -19,8 +20,10 @@ if (!process.env.PORT || !process.env.MONGO_DB) {
 }
 
 const objectConfig = {
-  port: process.env.PORT || 8080,
+  // port: process.env.PORT || 8080,
+  port: 4000,
   mongoDB: process.env.MONGO_DB,
+  persistence,
 };
 
 const uri = process.env.MONGO_DB;
@@ -36,4 +39,5 @@ const connectDb = async () => {
 module.exports = {
   connectDb,
   objectConfig,
+  program
 };

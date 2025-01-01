@@ -1,10 +1,10 @@
 const passport = require("passport");
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
-const { userModel } = require("../models/usersModel.js");
+const { userModel } = require("../daos/models/usersModel.js");
 const JWT_SECRET = "clave_secreta";
 const express = require("express");
 const localStrategy = require("passport-local").Strategy;
-const User = require("../models/usersModel.js");
+const User = require("../daos/models/usersModel.js");
 const router = express.Router();
 const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
