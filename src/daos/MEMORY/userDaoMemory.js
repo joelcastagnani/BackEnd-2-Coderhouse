@@ -1,6 +1,5 @@
 const { userModel } = require("../models/usersModel.js");
 
-//dao -> data access object
 
 class UserDaoMemory {
   constructor() {

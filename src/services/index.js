@@ -1,7 +1,7 @@
-const UserDaoMongo = require("../daos/MONGO/userDao.mongo.js");
+const { UserDao } = require("../daos/factory");
 
-const userService = new UserDaoMongo();
+const userService = new UserDao();
 
 module.exports = {
-    userService
+  userService,
 };
