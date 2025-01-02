@@ -20,12 +20,7 @@ class UserController {
       return res.send({ status: "error", error: "faltan llenar campos" });
     }
 
-    const result = await this.userService.create({
-      firstName,
-      lastName,
-      email,
-      password,
-    });
+    const result = await this.userService.create({nfirstName,lastName,email,password});
 
     res.send({ status: "success", data: result });
   };
