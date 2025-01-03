@@ -16,40 +16,26 @@ const { productModel } = require("./daos/models/productModel.js");
 const { connectDb, objectConfig } = require("./config/index.js");
 require("./config/passportConfig.js");
 
+
+
 const app = express();
 app.use(express.json());
 const PORT = objectConfig.port;
-
-// async function testInsert() {
-//   try {
-//     const newProduct = {
-//       title: "Producto de Prueba",
-//       code: "TEST123",
-//       thumbnail: "http://test.jpg",
-//       stock: 50,
-//       price: 100,
-//       description: "Producto de prueba para verificar la conexión",
-//     };
-//     const result = await productModel.create(newProduct);
-//     console.log("Producto creado:", result);
-//   } catch (error) {
-//     console.error("Error al insertar producto:", error);
-//   }
-// }
+app.use(cors());
 
 
-app.get("/api/users", (req, res) => {
-  res.json([
-    { id: 1, name: "John Doe" },
-    { id: 2, name: "Jane Smith" },
-  ]);
-});
-
-// connectDb().then(() => {
-//   testInsert();
+// app.get("/api/users", (req, res) => {
+//   res.json([
+//     { id: 1, name: "John Doe" },
+//     { id: 2, name: "Jane Smith" },
+//   ]);
 // });
 
 connectDb();
+// app.get('/api/products', (req, res) => {
+//   res.json([{ id: 1, name: 'Product A' }, { id: 2, name: 'Product B' }]);
+// });
+
 app.use('/api/products', productsRouter);
 
 
