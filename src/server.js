@@ -10,11 +10,13 @@ const cors = require('cors');
 const UserRouter = require('./routes/api/userRouter.js')
 const viewsRouter = require("./routes/viewsRouter.js");
 const sessionsRouter = require("./routes/api/sessionsRouter.js");
+const productsRouter = require('./routes/api/productsRouter.js');
 
 const { connectDb, objectConfig } = require("./config/index.js");
 require("./config/passportConfig.js");
 
 const app = express();
+app.use(express.json());
 const PORT = objectConfig.port;
 
 app.get("/api/users", (req, res) => {
@@ -25,7 +27,9 @@ app.get("/api/users", (req, res) => {
 });
 
 connectDb();
-app.use(express.json());
+app.use('/api/products', productsRouter);
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());
@@ -36,6 +40,7 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 app.use(appRouter);
+
 
 function authRequired(req, res, next) {
   passport.authenticate("jwt", { session: false }, (err, user) => {

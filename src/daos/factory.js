@@ -1,10 +1,13 @@
+const UserDaoMongo = require("./MONGO/userDao.mongo.js"); 
+const ProductDaoMongo = require("./MONGO/productsDao.mongo.js");
+
 const { objectConfig } = require("../config");
 
 const { persistence } = objectConfig;
 
 let UserDao;
-let productDao;
-let cartDao;
+let ProductDao;
+let CartDao;
 
 switch (persistence) {
   case "memory":
@@ -16,9 +19,15 @@ switch (persistence) {
     UserDao = UserDaoFile;
     break;
   default:
-    const UserDaoMongo = require("./MONGO/userDao.mongo");
+    const UserDaoMongo = require("./MONGO/userDao.mongo.js");
     UserDao = UserDaoMongo;
+
+    const ProductDaoMongo = require('./MONGO/productsDao.mongo.js')
+    productDao = ProductDaoMongo;
     break;
 }
 
-module.exports = { UserDao };
+module.exports = {
+  UserDao: UserDaoMongo,
+  ProductDao: ProductDaoMongo,
+};

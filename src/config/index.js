@@ -21,7 +21,7 @@ if (!process.env.PORT || !process.env.MONGO_DB) {
 
 const objectConfig = {
   // port: process.env.PORT || 8080,
-  port: 4000,
+  port: 8080,
   mongoDB: process.env.MONGO_DB,
   persistence,
 };
