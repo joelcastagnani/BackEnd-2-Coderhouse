@@ -2,25 +2,25 @@ const { productModel } = require("../models/productModel");
 
 class ProductDaoMongo {
   constructor() {
-    this.model = productModel;
+    this.productModel = productModel;
   }
 
   get = async () => {
-    return await this.model.find();
+    return await this.productModel.find();
   };
   getBy = async (filter) => {
-    return await this.model.findOne(filter).lean();
+    return await this.productModel.findOne(filter).lean();
   };
   update = async(pid, updateProduct) => {
-    return await this.model.findByIdAndUpdate({ _id: pid }, updateProduct, {
+    return await this.productModel.findByIdAndUpdate({ _id: pid }, updateProduct, {
       new: true,
     });
   }
   create = async (newProduct) => {
-    return await this.model.create(newProduct);
+    return await this.productModel.create(newProduct);
   }
   delete = async(pid) => {
-    return await this.model.findByIdAndUpdate(
+    return await this.productModel.findByIdAndUpdate(
       { _id: pid },
       { isActive: false },
       { new: true }

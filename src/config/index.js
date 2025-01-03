@@ -19,19 +19,19 @@ if (!process.env.PORT || !process.env.MONGO_DB) {
   process.exit(1);
 }
 
+console.log("Conectando a la base de datos:", process.env.MONGO_DB);
+
+
 const objectConfig = {
   // port: process.env.PORT || 8080,
   port: 8080,
   mongoDB: process.env.MONGO_DB,
   persistence,
 };
-
 const uri = process.env.MONGO_DB;
 console.log(uri);
 
 const connectDb = async () => {
-  // console.log("base de datos conectada");
-  // await connect(uri);
 
   await MongoSingleton.getInstance();
 };

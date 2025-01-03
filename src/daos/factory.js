@@ -23,7 +23,7 @@ switch (persistence) {
     UserDao = UserDaoMongo;
 
     const ProductDaoMongo = require('./MONGO/productsDao.mongo.js')
-    productDao = ProductDaoMongo;
+    const productDao = new ProductDaoMongo();
     break;
 }
 

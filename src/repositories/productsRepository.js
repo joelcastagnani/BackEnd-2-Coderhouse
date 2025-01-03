@@ -1,6 +1,8 @@
 const Product = require('../daos/models/productModel.js');
+const ProductRepository = require('../repositories/productsRepository.js');
+const ProductDaoMongo = require('../daos/MONGO/productsDao.mongo.js');
 
-class ProductRepository {
+class productRepository {
   constructor(dao) {
     this.dao = dao;
   }
@@ -12,12 +14,11 @@ class ProductRepository {
       const newProduct = await this.dao.create(productData);
       return newProduct;
     } catch (error) {
-      console.error('Error al crear producto:', error);
+      console.error('Error al crear producto: (productRepository)', error);
       throw error;
     }
   }
-  //createProducts = (newProduct) => this.dao.getBy(newProduct);
   deleteProduct = (pid) => this.dao.delete(pid);
 }
 
-module.exports = ProductRepository;
+module.exports = productRepository;
